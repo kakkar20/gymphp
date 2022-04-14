@@ -185,6 +185,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                                 <th scope="col">Email</th>
                                 <th scope="col">Date Of Birth</th>
                                 <th scope="col">Username</th>
+                                <th scope="col">Plan</th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
@@ -202,6 +203,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                             $fieldname4 = $row["email"];
                             $fieldname5 = $row["dob"];
                             $fieldname6 = $row["username"];
+                            $fieldname7 = $row["plan"];
                             //echo $fieldname1;
 
                             echo "<tr>
@@ -211,6 +213,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                             <td>".$fieldname4."</td>
                             <td>".$fieldname5."</td>
                             <td>".$fieldname6."</td>
+                            <td>".$fieldname7."</td>
                             <td><div class='d-flex'><a class='mx-1 edit' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='fa-solid fa-pen-to-square' id=".$fieldname1."></i></a>
                             <a class='mx-1 delete'><i class='fa-solid fa-trash-can'  id= d".$fieldname1."></i></a></div>
                             </td>
