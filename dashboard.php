@@ -1,4 +1,5 @@
 <?php
+include('database/db_connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +57,7 @@
                     session_start();
                     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"]!=true)
                     {
-                        header('location: index.php');
+                        header('location: /gymproject');
                     }else
                     {
                         echo'<li class="nav-item">
@@ -77,9 +78,9 @@
     <!-- sidebar section start -->
     <div class="container-fluid" style="margin: 0; padding: 1rem 0; overflow: hidden;">
     <div class="row">
-    <div class="col-2">
+    <div class="col-3">
     <main>
-   <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 257px;">
+   <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 257px; height: 100vh;">
     <ul class="nav nav-pills flex-column mb-auto my-5">
       <li class="nav-item my-3">
         <a href="dashboard.php" class="nav-link active" aria-current="page">
@@ -99,12 +100,12 @@
           Plans
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="profile.php" class="nav-link link-dark my-3">
         <i class="fa-solid fa-user"></i>
           Profile
         </a>
-      </li>
+      </li> -->
       <li>
         <a href="logout.php" class="nav-link link-dark my-3">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -114,16 +115,18 @@
     </ul>
 </div>
 
-  <div class="b-example-divider"></div>
 
    </main>
     </div>    
-    <div class="col-10 mt-4">
+    <div class="col-9 mt-4">
         <h2 class="mt-5 mb-2">Gym Dashboard</h2>
         <hr>
         <div class="container-fluid my-4">
             <div class="row">
-                <div class="col">
+              <?php
+              if($_SESSION['username'] != 'admin')
+              {
+                echo '<div class="col">
                 <div class="card" style="width: 20rem; background-color: #F56954; color: #ffffff;">
                     <div class="card-body my-4">
                         <p class="card-text my-5">
@@ -149,7 +152,52 @@
                     </div>
                     </div>
                 </div>
-            </div>
+            </div>';
+              }
+              else
+              {
+                $sql_user = "SELECT * FROM users";
+                $result = mysqli_query($conn, $sql_user);
+                $row_count = mysqli_num_rows($result);
+                
+                $sql_plan = "SELECT * FROM gym_plan";
+                $result_plan = mysqli_query($conn, $sql_plan);
+                $row_count_1 = mysqli_num_rows($result_plan);
+
+                if($row_count)
+                {
+                  $count_result = $row_count - 1 ;
+                }
+                
+               echo '<div class="col">
+                <div class="card" style="width: 20rem; background-color: #F56954; color: #ffffff;">
+                    <div class="card-body my-4">
+                        <p class="card-text my-5">
+                        <h4 class="text-center">'.$count_result.' <br>Members</h4>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col">
+                <div class="card" style="width: 20rem; background-color: #00A65A; color: #ffffff;">
+                    <div class="card-body my-4">
+                        <p class="card-text my-5">
+                        <h4 class="text-center">'.$row_count_1.' <br>Plans</h4>
+                        </p>
+                    </div>
+                    </div>
+                </div><div class="col">
+                <div class="card" style="width: 20rem; background-color: #00C0EF; color: #ffffff;">
+                    <div class="card-body my-4">
+                        <p class="card-text my-5">
+                        <h4 class="text-center">0 <br>Income</h4>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>';
+              }
+            ?>
         </div>
     </div>
   </div>

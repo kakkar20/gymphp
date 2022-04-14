@@ -24,13 +24,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 }
                 else
                 {
-                    $error = "Invalid username or password";
+                    $error = "<span style='color: red;'>Invalid username or password</span>";
                 }
             }
         }
     else
     {
-        $error = "Invalid username or password";
+        $error = "<span style='color: red;'>Invalid username or password</span>";
     }
 }
 ?>

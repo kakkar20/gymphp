@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gym project</title>
+    <title>STAMINA - Dare to be great.</title>
     <!-- bootstrap cdn link  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -33,9 +33,6 @@
     <div class="container-fluid mt-5" id="gallery">
         <div class="container mt-4">
             <h3 class="text-center upper text-decoration-underline py-5">Gallery</h3>
-            <div class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos harum
-                voluptatum eaque quo expedita tempore voluptatibus fuga! Voluptatibus, adipisci beatae praesentium enim
-                cumque quisquam magnam, omnis ratione, sunt nulla ab.</div>
             <div class="row mt-4 pb-5">
                 <div class="col">
                     <img src="images/gall-1.jpg" class="img-thumbnail" alt="...">
@@ -75,7 +72,7 @@
             <div class="centered">
                 <h3 class="fw-bold">FITNESS CLASSES THIS SUMMER</h3>
                 <p>PAY NOW AND <br> GET <span>35% </span>DISCOUNT</p>
-                <button class="btn btn-primary">Become Member</button>
+                <a class="btn btn-primary" href="register.php">Become Member</a>
             </div>
         </div>
     </div>
