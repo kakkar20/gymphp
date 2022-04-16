@@ -20,7 +20,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                     session_start();
                     $_SESSION["loggedin"] = true;
                     $_SESSION["username"] = $username;
-                    header('location: dashboard.php');
+
+                    if(isset($_REQUEST["remember"]) && $_REQUEST["remember"]==1)
+                    {
+                        setcookie("login","1",time()+60);// second on page time 
+                    }
+                     else
+                     {
+	                 setcookie("login","1");
+                     header('location: dashboard.php');
+                     }
                 }
                 else
                 {
@@ -32,6 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $error = "<span style='color: red;'>Invalid username or password</span>";
     }
+	
 }
 ?>
 <!DOCTYPE html>
@@ -69,21 +79,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 <form action="" method="post" class="cform">
                     <div class="form-text text-center my-3"><?php echo $error; ?></div>
                     <div class="mb-3">
-                      <input type="text" class="form-control" id="" name="username" placeholder="Enter Username">
-                      <div id="" class="form-text"></div>
+                        <input type="text" class="form-control" id="" name="username" placeholder="Enter Username">
+                        <div id="" class="form-text"></div>
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control" id="" name="password" placeholder="Enter password">
-                      <div id="" class="form-text"></div>
+                        <input type="password" class="form-control" id="" name="password" placeholder="Enter password">
+                        <div id="" class="form-text"></div>
                     </div>
                     <button class="btn btn-outline-secondary my-3">Login</button>
                     <div id="" class="form-text">Don't have an account? <a href="register.php">Register now.</a></div>
-                  </form>
+                </form>
             </div>
         </div>
     </div>
     <!-- login section end -->
-   
+
     <!-- footer section start -->
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -109,8 +119,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     <!-- js cdn for bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

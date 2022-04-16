@@ -1,6 +1,11 @@
 <?php
 include('database/db_connect.php');
 
+if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie name 
+{
+    header("location: /gymproject/"); 
+}
+
 $message = '';
 if(isset($_POST['save']))
 {
@@ -10,9 +15,10 @@ if(isset($_POST['save']))
     $feature_2 = $_POST['feature_2'];
     $feature_3 = $_POST['feature_3'];
     $feature_4 = $_POST['feature_4'];
+    $plan_detail = $_POST['plan_detail'];
 
-    $plan_sql = "INSERT INTO gym_plan (`plan_name`, `price`, `feature_1`, `feature_2`, `feature_3`, `feature_4`) VALUES ('$plan_name', '$price', '$feature_1', '$feature_2', '$feature_3', '$feature_4')";
-    $result = mysqli_query($conn, $plansql);
+    $plan_sql = "INSERT INTO gym_plan (`plan_name`, `price`, `feature_1`, `feature_2`, `feature_3`, `feature_4`, `plan_detail`) VALUES ('$plan_name', '$price', '$feature_1', '$feature_2', '$feature_3', '$feature_4', '$plan_detail')";
+    $result = mysqli_query($conn, $plan_sql);
 
     if($result)
     {
@@ -32,7 +38,7 @@ if(isset($_POST['save']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plans | Gym project</title>
+    <title>Plans | STAMINA</title>
     <!-- bootstrap cdn link  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -68,7 +74,7 @@ if(isset($_POST['save']))
 
     <!-- nav section start -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-        <div class="container-fluid cmy">
+        <div class="container-fluid cmyb">
             <a class="navbar-brand fw-bolder" href="index.php">STAMINA<span class="color">.</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -113,24 +119,35 @@ if(isset($_POST['save']))
                                     Dashboard
                                 </a>
                             </li>
+                            <?php
+                             if($_SESSION["username"]== 'admin')
+                             {
+                            ?>
                             <li>
                                 <a href="members.php" class="nav-link link-dark my-3">
                                     <i class="fa-solid fa-users"></i>
                                     Members
                                 </a>
                             </li>
+                            <?php
+                             }
+                             else{
+                            ?>
+                            <li>
+                                <a href="members.php" class="nav-link link-dark my-3">
+                                <i class="fa-solid fa-user"></i>
+                                    My Profile
+                                </a>
+                            </li>
+                            <?php
+                             }
+                            ?>
                             <li class="nav-item my-3">
                                 <a href="plans.php" class="nav-link active" aria-current="page">
                                     <i class="fa-solid fa-quote-left"></i>
                                     Plans
                                 </a>
                             </li>
-                            <!-- <li>
-                                <a href="profile.php" class="nav-link link-dark my-3">
-                                    <i class="fa-solid fa-user"></i>
-                                    Profile
-                                </a>
-                            </li> -->
                             <li>
                                 <a href="logout.php" class="nav-link link-dark my-3">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -151,7 +168,7 @@ if(isset($_POST['save']))
                     <?php
                 if($_SESSION['username'] == 'admin')
                 {
-                    echo '<button class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Plan</button>';
+                    echo '<button class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span><i class="fa-solid fa-plus"></i></span> Add Plan</button>';
                 }
                 ?>
                 </div>
@@ -193,6 +210,10 @@ if(isset($_POST['save']))
                                     <input type="text" class="form-control" id="" name="feature_4" placeholder="Enter your plan feature 4">
                                         <div class="form-text"></div>
                                     </div>
+                                    <div class="mb-3">
+                                    <input type="text" class="form-control" id="" name="plan_detail" placeholder="Enter your plan details">
+                                        <div class="form-text"></div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary" name="save">Submit</button>
                                 </form>
                             </div>
@@ -221,6 +242,7 @@ if(isset($_POST['save']))
                                 <th scope="col">Feature_2</th>
                                 <th scope="col">Feature_3</th>
                                 <th scope="col">Feature_4</th>
+                                <th scope="col">Plan Detail</th>
                             </tr>
                         </thead>
                         <tbody>';
@@ -235,6 +257,7 @@ if(isset($_POST['save']))
                             $feature_2 = $row['feature_2'];
                             $feature_3 = $row['feature_3'];
                             $feature_4 = $row['feature_4'];
+                            $plan_detail = $row['plan_detail'];
 
                             echo ' <tr>
                             <th scope="row">'.$Plan_id.'</th>
@@ -244,6 +267,7 @@ if(isset($_POST['save']))
                             <td>'.$feature_2.'</td>
                             <td>'.$feature_3.'</td>
                             <td>'.$feature_4.'</td>
+                            <td>'.$plan_detail.'</td>
                         </tr>';
                           }
                         }

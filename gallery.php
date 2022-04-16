@@ -31,33 +31,33 @@
 
     <!-- gallery section start -->
     <div class="container-fluid mt-5" id="gallery">
-        <div class="container mt-4">
-            <h3 class="text-center upper text-decoration-underline py-5">Gallery</h3>
-            <div class="row mt-4 pb-5">
-                <div class="col">
-                    <img src="images/gall-1.jpg" class="img-thumbnail" alt="...">
-                </div>
-                <div class="col">
-                    <img src="images/gall-2.jpg" class="img-thumbnail" alt="...">
-                </div>
-                <div class="col">
-                    <img src="images/gall-3.jpg" class="img-thumbnail" alt="...">
-                </div>
-            </div>
-        </div>
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col">
-                    <img src="images/bg-1.jpg" class="img-thumbnail" alt="...">
-                </div>
-                <div class="col">
-                    <img src="images/gall-5.jpg" class="img-thumbnail" alt="...">
-                </div>
-                <div class="col">
-                    <img src="images/bg-2.jpg" class="img-thumbnail" alt="...">
-                </div>
-            </div>
-        </div>
+    <div class="container mt-4">
+                        <h3 class="text-center upper text-decoration-underline py-4 rh">Gallery</h3>
+                        <div class="row mt-4 pb-5">
+                            <div class="col-md-4">
+                                <img src="images/gall-1.jpg" class="img-thumbnail" alt="..." style="height: 314px;">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="images/gall-2.jpg" class="img-thumbnail" alt="..." style="height: 314px;">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="images/gall-3.jpg" class="img-thumbnail" alt="..." style="height: 314px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container pb-5">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="images/bg-1.jpg" class="img-thumbnail" alt="..." style="height: 314px;">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="images/gall-5.jpg" class="img-thumbnail" alt="..." style="height: 314px;">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="images/bg-2.jpg" class="img-thumbnail" alt="..." style="height: 314px;">
+                            </div>
+                        </div>
+                    </div>
     </div>
     <!-- gallery section ends -->
 
@@ -72,33 +72,14 @@
             <div class="centered">
                 <h3 class="fw-bold">FITNESS CLASSES THIS SUMMER</h3>
                 <p>PAY NOW AND <br> GET <span>35% </span>DISCOUNT</p>
-                <a class="btn btn-primary" href="register.php">Become Member</a>
+                <a class="btn btn-outline-light fw-bold" href="register.php">Become Member</a>
             </div>
         </div>
     </div>
     <!-- banner section start -->
 
     <!-- footer section start -->
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-                <span class="text-muted">&copy;
-                    <?php echo date("Y"); ?> Stamina<span>.</span>
-                </span>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
-            </ul>
-        </footer>
-    </div>
+    <?php include('footer.php'); ?>
     <!-- footer section ends -->
 
     <!-- js cdn for bootstrap -->

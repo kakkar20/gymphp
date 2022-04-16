@@ -29,14 +29,10 @@ include('database/db_connect.php');
        <!-- pricing section start -->
        <div class="container-fluid" id="price">
         <div class="container mt-5">
-            <h3 class="text-center upper text-decoration-underline py-4 mt-3">Pricing</h3>
-            <!-- <div class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos harum
-                voluptatum eaque quo expedita tempore voluptatibus fuga! Voluptatibus, adipisci beatae praesentium enim
-                cumque quisquam magnam, omnis ratione, sunt nulla ab.</div> -->
-            <div class="container" id="price-card">
-                <div class="row mt-4 pb-5">
-                    <div class="col">
-                        <?php
+        <h3 class="text-center upper text-decoration-underline py-4 rh">Pricing</h3>
+            <!-- <div class="container-fluid" id="price-card"> -->
+            <div class="row mt-4 pb-5">
+                <?php
                         $sql = "SELECT * FROM gym_plan";
                         $result = mysqli_query($conn, $sql);
 
@@ -51,26 +47,29 @@ include('database/db_connect.php');
                                 $feature_3 = $row['feature_3'];
                                 $feature_4 = $row['feature_4'];
 
-                                echo '<div class="card" style="width: 20rem;">
-                            <div class="card-header text-center fw-bold">
-                                '.$plan_name.'
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title mb-5">₹'.$price.' / Month</h5>
+                                ?>
+                <div class="col-md-4">
+                    <div class="card">
+                        <?php
+                        echo '<div class="card-header text-center fw-bold">
+                             '.$plan_name.'</div>';
+                              echo '<div class="card-body text-center">
+                                <h5 class="card-title mb-5">₹ '.$price.' / Month</h5>
                                 <p class="card-text card-bg">'.$feature_1.'</p>
                                 <p class="card-text card-bg">'.$feature_2.'</p>
                                 <p class="card-text card-bg">'.$feature_3.'</p>
                                 <p class="card-text card-bg">'.$feature_4.'</p>
-                            </div>
+                            </div>';
+                            ?>
                         </div>
-                    </div>';
-                            }
+                    </div>
+                    <?php  }
                         }
                     ?>
+                            <!-- </div> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
         <!-- pricing section ends -->
 
 
@@ -82,33 +81,14 @@ include('database/db_connect.php');
             <div class="centered">
                 <h3 class="fw-bold">FITNESS CLASSES THIS SUMMER</h3>
                 <p>PAY NOW AND <br> GET <span>35% </span>DISCOUNT</p>
-                <a class="btn btn-primary" href="register.php">Become Member</a>
+                <a class="btn btn-outline-light fw-bold" href="register.php">Become Member</a>
             </div>
         </div>
     </div>
     <!-- banner section start -->
 
     <!-- footer section start -->
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-                <span class="text-muted">&copy;
-                    <?php echo date("Y"); ?> Stamina<span>.</span>
-                </span>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
-            </ul>
-        </footer>
-    </div>
+    <?php include('footer.php'); ?>
     <!-- footer section ends -->
 
     <!-- js cdn for bootstrap -->

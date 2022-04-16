@@ -30,52 +30,55 @@
     <!-- trainers section start -->
     <div class="container-fluid my-5" id="trainers">
         <div class="container my-5">
-            <h3 class="text-center upper text-decoration-underline py-5">Fitness Experts</h3>
-            <div class="text-center mb-5">Fitness is the quantitative representation of individual reproductive success.
+        <h3 class="text-center upper text-decoration-underline py-4 rh">Fitness Experts</h3>
+            <div class="text-center mb-5 rt">Fitness is the quantitative representation of individual reproductive success.
                 It is also equal to the average contribution to the gene pool of the next generation, made by the same
                 individuals of the specified genotype or phenotype. Fitness can be defined either with respect to a
                 genotype or to a phenotype in a given environment.</div>
             <div class="row mt-4 pb-5">
-                <div class="col">
-                    <div class="card mb-3" style="max-width: 540px;">
+                <div class="col-md-4">
+                    <div class="card mb-3 rcs">
                         <div class="row g-0">
                             <div class="col-md-8">
-                                <img src="images/trainer-1.jpg" class="img-fluid rounded-start" alt="...">
+                                <img src="images/trainer-1.jpg" class="img-fluid rounded-start" alt="..."
+                                    style="height: 369px;">
                             </div>
                             <div class="col-md-4">
-                                <div class="card-body">
-                                    <h5 class="card-title vertical-up fw-bold">Steve Smith</h5>
-                                    <p class="card-text"></p>
+                                <div class="card-body vertical-up">
+                                    <h5 class="card-title fw-bold tname">Steve Smith</h5>
+                                    <small class="card-text">Fitness Trainer</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card mb-3" style="max-width: 540px;">
+                <div class="col-md-4">
+                    <div class="card mb-3 rcs">
                         <div class="row g-0">
                             <div class="col-md-8">
-                                <img src="images/trainer-2.jpg" class="img-fluid rounded-start" alt="...">
+                                <img src="images/trainer-2.jpg" class="img-fluid rounded-start" alt="..."
+                                    style="height: 100%;">
                             </div>
                             <div class="col-md-4">
-                                <div class="card-body">
-                                    <h5 class="card-title vertical-up fw-bold">Arnold Smith</h5>
-                                    <p class="card-text"></p>
+                                <div class="card-body vertical-up">
+                                    <h5 class="card-title fw-bold tname">Arnold Smith</h5>
+                                    <small class="card-text">Fitness Trainer</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card mb-3" style="max-width: 540px;">
+                <div class="col-md-4">
+                    <div class="card mb-3 rcs">
                         <div class="row g-0">
                             <div class="col-md-8">
-                                <img src="images/trainer-3.jpg" class="img-fluid rounded-start" alt="...">
+                                <img src="images/trainer-3.jpg" class="img-fluid rounded-start" alt="..."
+                                    style="height: 100%;">
                             </div>
                             <div class="col-md-4">
-                                <div class="card-body">
-                                    <h5 class="card-title vertical-up fw-bold">Angel Adams</h5>
-                                    <p class="card-text"></p>
+                                <div class="card-body vertical-up">
+                                    <h5 class="card-title fw-bold tname">Angel Adams</h5>
+                                    <small class="card-text">Fitness Trainer</small>
                                 </div>
                             </div>
                         </div>
@@ -94,33 +97,14 @@
             <div class="centered">
                 <h3 class="fw-bold">FITNESS CLASSES THIS SUMMER</h3>
                 <p>PAY NOW AND <br> GET <span>35% </span>DISCOUNT</p>
-                <a class="btn btn-primary" href="register.php">Become Member</a>
+                <a class="btn btn-outline-light fw-bold" href="register.php">Become Member</a>
             </div>
         </div>
     </div>
     <!-- banner section start -->
 
     <!-- footer section start -->
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-                <span class="text-muted">&copy;
-                    <?php echo date("Y"); ?> Stamina<span>.</span>
-                </span>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
-            </ul>
-        </footer>
-    </div>
+    <?php include('footer.php'); ?>
     <!-- footer section ends -->
 
     <!-- js cdn for bootstrap -->

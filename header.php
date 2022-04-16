@@ -9,29 +9,29 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/gymproject">Home</a>
+                        <a class="nav-link rca active" aria-current="page" href="/gymproject">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.php">Gallery</a>
+                        <a class="nav-link rca" href="gallery.php">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="trainer.php">Trainers</a>
+                        <a class="nav-link rca" href="trainer.php">Trainers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pricing.php">Pricing</a>
+                        <a class="nav-link rca" href="pricing.php">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact</a>
+                        <a class="nav-link rca" href="contact.php">Contact</a>
                     </li>
                     <?php 
                     session_start();
                     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"]!=true)
                     {
                         echo '<li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary mx-1" href="register.php">Register</a>
+                        <a class="nav-link btn btn-outline-secondary mx-1 cmt" href="register.php">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary mx-1" href="login.php">Login</a>
+                        <a class="nav-link btn btn-outline-secondary mx-1 cmt" href="login.php">Login</a>
                     </li>';
                     }else
                     {

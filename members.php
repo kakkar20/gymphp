@@ -1,6 +1,11 @@
 <?php
 include('database/db_connect.php');
 
+if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie name 
+{
+    header("location: /gymproject/"); 
+}
+
 $error = '';
 $delete = false;
 
@@ -24,8 +29,9 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
         $email = $_POST['email_edit'];
         $dob = $_POST['dob_edit'];
         $username = $_POST['username_edit'];
+        $plan = $_POST['plan_edit'];
 
-        $sql = "UPDATE users SET `first_name` = '$first_name' , `last_name` = '$last_name' , `email` = '$email' , `dob` = '$dob' , `username` = '$username'  WHERE users. id = '$sno'";
+        $sql = "UPDATE users SET `first_name` = '$first_name' , `last_name` = '$last_name' , `email` = '$email' , `dob` = '$dob' , `username` = '$username' , `plan` = '$plan'  WHERE users. id = '$sno'";
         $result = mysqli_query($conn, $sql);
 
         if($result)
@@ -52,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members | Gym project</title>
+    <title>Members | STAMINA</title>
     <!-- bootstrap cdn link  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -81,6 +87,23 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
         font-size: 3.5rem;
     }
 }
+
+.hov_edit, .hov_delete
+{
+    color: #333;
+}
+
+.hov_edit:hover
+{
+    color: green;
+    cursor: pointer;
+}
+
+.hov_delete:hover
+{
+    color: red;
+    cursor: pointer;
+}
 </style>
 
 
@@ -88,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
 
     <!-- nav section start -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-        <div class="container-fluid cmy">
+        <div class="container-fluid cmyb">
             <a class="navbar-brand fw-bolder" href="index.php">STAMINA<span class="color">.</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -133,12 +156,29 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                                     Dashboard
                                 </a>
                             </li>
-                            <li class="nav-item my-3">
+                            <?php
+                            if($_SESSION["username"]== 'admin')
+                            {?>
+                                <li class="nav-item my-3">
                                 <a href="members.php" class="nav-link active">
                                     <i class="fa-solid fa-users"></i>
                                     Members
                                 </a>
                             </li>
+                           <?php
+                            }
+                            else
+                            {
+                            ?>
+                            <li class="nav-item my-3">
+                                <a href="members.php" class="nav-link active">
+                                <i class="fa-solid fa-user"></i>
+                                    My Profile
+                                </a>
+                            </li>
+                            <?php
+                            }
+                            ?>
                             <li>
                                 <a href="plans.php" class="nav-link link-dark my-3">
                                     <i class="fa-solid fa-quote-left"></i>
@@ -165,8 +205,16 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
             </div>
 
             <div class="col-9 mt-4">
-                <h2 class="mt-5 mb-2">Gym Members</h2>
-                <hr>
+                <?php
+                if($_SESSION["username"] == 'admin')
+                {
+                echo '<h2 class="mt-5 mb-2">Gym Members</h2>';
+                }
+                else
+                {
+                    echo '<h2 class="mt-5 mb-2">Profile</h2>';
+                }
+                ?><hr>
 
                 <!-- table section start -->
                 <div class="container">
@@ -214,8 +262,8 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                             <td>".$fieldname5."</td>
                             <td>".$fieldname6."</td>
                             <td>".$fieldname7."</td>
-                            <td><div class='d-flex'><a class='mx-1 edit' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='fa-solid fa-pen-to-square' id=".$fieldname1."></i></a>
-                            <a class='mx-1 delete'><i class='fa-solid fa-trash-can'  id= d".$fieldname1."></i></a></div>
+                            <td><div class='d-flex'><a class='mx-1 edit' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='fa-solid fa-pen-to-square hov_edit' id=".$fieldname1."></i></a>
+                            <a class='mx-1 delete'><i class='fa-solid fa-trash-can hov_delete'  id= d".$fieldname1."></i></a></div>
                             </td>
                         </tr>";
                         $id++;
@@ -223,7 +271,34 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                         }
                         else
                         {
-                           $message = "<span style='font-weight: bold;'>You are Not Allow to view this Page</span>";
+                        //    $message = "<span style='font-weight: bold;'>You are Not Allow to view this Page</span>";
+                        $id=1;
+                          while($row = $result->fetch_assoc())
+                          { if($row['username']== $_SESSION['username'])
+                            {
+                            $fieldname1 = $row["id"];
+                            $fieldname2 = $row["first_name"];
+                            $fieldname3 = $row["last_name"];
+                            $fieldname4 = $row["email"];
+                            $fieldname5 = $row["dob"];
+                            $fieldname6 = $row["username"];
+                            $fieldname7 = $row["plan"];
+                            //echo $fieldname1;
+
+                            echo "<tr>
+                            <th scope='row'>".$id."</th>
+                            <td>".$fieldname2."</td>
+                            <td>".$fieldname3."</td>
+                            <td>".$fieldname4."</td>
+                            <td>".$fieldname5."</td>
+                            <td>".$fieldname6."</td>
+                            <td>".$fieldname7."</td>
+                            <td><a class='mx-1 edit' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='fa-solid fa-pen-to-square hov_edit' id=".$fieldname1."></i></a>
+                            </td>
+                        </tr>";
+                        $id++;
+                            }
+                          }
                         }
                         echo ' </tbody>
                         </table>
@@ -269,6 +344,24 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                                             placeholder="Enter your Username">
                                         <div class="form-text"></div>
                                     </div>
+                                    <?php
+                                    if($_SESSION["username"] == 'admin')
+                                    {
+                                    echo '<div class="mb-3">
+                                        <input type="text" class="form-control" id="plan_edit" name="plan_edit"
+                                            placeholder="Enter your Plan">
+                                        <div class="form-text"></div>
+                                    </div>';
+                                    }
+                                    else
+                                    {
+                                    echo '<div class="mb-3">
+                                        <input type="text" class="form-control" id="plan_edit" name="plan_edit"
+                                            placeholder="Enter your Plan" disabled>
+                                        <div class="form-text"></div>
+                                    </div>';
+                                    }
+                                    ?>
                                     <button type="submit" class="btn btn-primary" name="save">Update</button>
                                 </form>
                             </div>
@@ -323,12 +416,14 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                     email = tr.getElementsByTagName("td")[2].innerText;
                     dob = tr.getElementsByTagName("td")[3].innerText;
                     username = tr.getElementsByTagName("td")[4].innerText;
+                    plan = tr.getElementsByTagName("td")[5].innerText;
                     //console.log(first, last, email, dob, username);
                     first_edit.value = first;
                     last_edit.value = last;
                     email_edit.value = email;
                     dob_edit.value = dob;
                     username_edit.value = username;
+                    plan_edit.value = plan;
                     sno_edit.value = e.target.id;
                    // console.log(e.target.id);
                 })

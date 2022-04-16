@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     // $exists = false;
 
     //checking whether username and email is already in the database or not
-    $existsSql = "SELECT * FROM `users` WHERE username = '$username' AND email = '$email'";
+    $existsSql = "SELECT * FROM `users` WHERE username = '$username' , email = '$email'";
     $result = mysqli_query($conn, $existsSql);
     $numExistRow = mysqli_num_rows($result);
     if($numExistRow > 0)

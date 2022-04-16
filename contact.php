@@ -88,10 +88,10 @@ else
     <!-- contact section start -->
     <div class="container-fluid" id="contact">
         <div class="conatiner py-5">
-            <h3 class="text-center upper text-decoration-underline py-5 ">Contact Us</h3>
+            <h3 class="text-center upper text-decoration-underline py-5 rh">Contact Us</h3>
             <div class="container py-3">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         <h4 class="fw-bold">Contact Information</h4>
                         <div class="container">
                             <div class="d-flex my-4 justify-content-between">
@@ -120,7 +120,7 @@ else
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <h4 class="fw-bold pb-2">Get In Touch</h4>
                         <div class="shadow p-3 mb-5 bg-body rounded">
                         <div id="" class="form-text text-center mb-3"><?php  echo $success; ?></div>
@@ -152,7 +152,7 @@ else
                                        placeholder="Enter your Query"></textarea>
                                     <div id="" class="form-text"></div>
                                 </div>
-                                <button type="submit" name="submit" class="btn btn-outline-secondary">Submit</button>
+                                <button type="submit" name="submit" class="btn btn-outline-secondary">Send Message</button>
                             </form>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ else
             <div class="centered">
                 <h3 class="fw-bold">FITNESS CLASSES THIS SUMMER</h3>
                 <p>PAY NOW AND <br> GET <span>35% </span>DISCOUNT</p>
-                <a class="btn btn-primary" href="register.php">Become Member</a>
+                <a class="btn btn-outline-light fw-bold" href="register.php">Become Member</a>
             </div>
         </div>
     </div>
@@ -182,26 +182,7 @@ else
 
 
     <!-- footer section start -->
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-                <span class="text-muted">&copy;
-                    <?php echo date("Y"); ?> Stamina<span>.</span>
-                </span>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
-            </ul>
-        </footer>
-    </div>
+    <?php include('footer.php'); ?>
     <!-- footer section ends -->
 
     <!-- js cdn for bootstrap -->
