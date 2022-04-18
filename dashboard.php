@@ -67,11 +67,7 @@ if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie nam
                     }else
                     {
                         echo'<li class="nav-item">
-                    <a class="nav-link active">Welcome! '.$_SESSION["username"].'</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary mx-1" href="logout.php"><span><i
-                            class="fa-solid fa-arrow-right-from-bracket"></i></span> logout</a>
+                    <a class="nav-link active">Welcome! <span class="fw-bold">'.$_SESSION["username"].'</span></a>
                     </li>';
                     }
                     ?>
@@ -123,6 +119,19 @@ if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie nam
                                     Plans
                                 </a>
                             </li>
+                            <?php
+                            if($_SESSION["username"]== 'admin')
+                            {
+                            ?>
+                            <li>
+                                <a href="query.php" class="nav-link link-dark my-3">
+                                <i class="fa-solid fa-clipboard-question"></i>
+                                    Query
+                                </a>
+                            </li>
+                            <?php
+                            }
+                            ?>
                             <li>
                                 <a href="logout.php" class="nav-link link-dark my-3">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -198,7 +207,7 @@ if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie nam
                         <div class="card" style="width: 20rem; background-color: #00A65A; color: #ffffff;">
                             <div class="card-body my-4">
                                 <p class="card-text my-5">
-                                <h4 class="text-center">No Diet</h4>
+                                <h4 class="text-center">No <br>Diet</h4>
                                 </p>
                             </div>
                             </div>
@@ -206,7 +215,7 @@ if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie nam
                         <div class="card" style="width: 20rem; background-color: #00C0EF; color: #ffffff;">
                             <div class="card-body my-4">
                                 <p class="card-text my-5">
-                                <h4 class="text-center">No Instructor</h4>
+                                <h4 class="text-center">No <br>Instructor</h4>
                                 </p>
                             </div>
                             </div>
@@ -227,6 +236,9 @@ if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie nam
                 $result_plan = mysqli_query($conn, $sql_plan);
                 $row_count_1 = mysqli_num_rows($result_plan);
 
+                $sql_contact = "SELECT * FROM contact_form";
+                $result_contact = mysqli_query($conn, $sql_contact);
+                $row_count_2 = mysqli_num_rows($result_contact);
                 if($row_count)
                 {
                   $count_result = $row_count - 1 ;
@@ -256,7 +268,7 @@ if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie nam
                 <div class="card" style="width: 20rem; background-color: #00C0EF; color: #ffffff;">
                     <div class="card-body my-4">
                         <p class="card-text my-5">
-                        <h4 class="text-center">0 <br>Income</h4>
+                        <h4 class="text-center">'.$row_count_2.' <br>Querys</h4>
                         </p>
                     </div>
                     </div>
@@ -273,26 +285,7 @@ if(!isset($_COOKIE["login"]))// $_COOKIE is a variable and login is a cookie nam
 
 
         <!-- footer section start -->
-        <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                <div class="col-md-4 d-flex align-items-center">
-                    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                        <svg class="bi" width="30" height="24">
-                            <use xlink:href="#bootstrap"></use>
-                        </svg>
-                    </a>
-                    <span class="text-muted">&copy;
-                        <?php echo date("Y"); ?> Stamina<span>.</span>
-                    </span>
-                </div>
-
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                </ul>
-            </footer>
-        </div>
+        <?php include('footer.php'); ?>
         <!-- footer section end -->
 
         <!-- js cdn for bootstrap -->

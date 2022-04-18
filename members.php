@@ -15,6 +15,15 @@ if(isset($_GET['delete']))
     $sno = $_GET['delete'];
     $sql = "DELETE FROM users WHERE id = '$sno'";
     $result = mysqli_query($conn, $sql);
+
+    if($result)
+    {
+        $error = "<span style='color: green;'>Record Delete Successfully</span>";
+    }
+    else
+    {
+        $error = "<span style='color: red;'>Error occur while  deleting the record</span>";
+    }
 }
 
 // updating the record
@@ -128,11 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                     }else
                     {
                         echo'<li class="nav-item">
-                    <a class="nav-link active">Welcome! '.$_SESSION["username"].'</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary mx-1" href="logout.php"><span><i
-                            class="fa-solid fa-arrow-right-from-bracket"></i></span> logout</a>
+                    <a class="nav-link active">Welcome! <span class="fw-bold">'.$_SESSION["username"].'</span></a>
                     </li>';
                     }
                     ?>
@@ -185,12 +190,19 @@ if($_SERVER["REQUEST_METHOD"] == 'POST')
                                     Plans
                                 </a>
                             </li>
-                            <!-- <li>
-                                <a href="profile.php" class="nav-link link-dark my-3">
-                                    <i class="fa-solid fa-user"></i>
-                                    Profile
+                            <?php
+                            if($_SESSION["username"]== 'admin')
+                            {
+                            ?>
+                            <li>
+                                <a href="query.php" class="nav-link link-dark my-3">
+                                <i class="fa-solid fa-clipboard-question"></i>
+                                    Query
                                 </a>
-                            </li> -->
+                            </li>
+                            <?php
+                            }
+                            ?>
                             <li>
                                 <a href="logout.php" class="nav-link link-dark my-3">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>

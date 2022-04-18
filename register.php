@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     // $exists = false;
 
     //checking whether username and email is already in the database or not
-    $existsSql = "SELECT * FROM `users` WHERE username = '$username' , email = '$email'";
+    $existsSql = "SELECT * FROM `users` WHERE username = '$username' AND email = '$email'";
     $result = mysqli_query($conn, $existsSql);
     $numExistRow = mysqli_num_rows($result);
     if($numExistRow > 0)
@@ -25,21 +25,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-    if($password == $confirm_password && !empty(trim($username)))
+    if($password == $confirm_password)
     {
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `dob`, `username`, `password`, `created_at`) VALUES ( '$fname', '$lname', '$email', '$dob', '$username', '$hash_password', CURRENT_TIMESTAMP)";
-        $result = mysqli_query($conn, $sql);
+        $sql = "INSERT INTO users (`first_name`, `last_name`, `email`, `dob`, `username`, `password`, `plan`) VALUES ( '$fname', '$lname', '$email', '$dob', '$username', '$hash_password', 'No plan')";
+        $end_result = mysqli_query($conn, $sql);
+
+        if($end_result)
+        {
         $error = "<span style='color: green;'>User register successfully.</span>";
-        header('location: login.php');
+        ?>
+        <script>
+          setTimeout(function () {    
+          window.location.href = 'login.php'; 
+          },3000); // 3 seconds
+        </script>
+        <?php  
+        //header('location: login.php');
+        }
+        else{
+          $error = '<span style="color: red;">Error Creating User</span>';
+        }
     }
     else
     {
         $perror = "Confirm password should be same as password";
     }
     }
-}
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STAMINA - Dare to be great.</title>
+    <title>Register | STAMINA</title>
     <!-- bootstrap cdn link  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -114,26 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     <!-- register section end -->
 
     <!-- footer section start -->
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-                <span class="text-muted">&copy;
-                    <?php echo date("Y"); ?> Stamina<span>.</span>
-                </span>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
-            </ul>
-        </footer>
-    </div>
+    <?php include('footer.php'); ?>
     <!-- footer section ends -->
 
     <!-- js cdn for bootstrap -->
